@@ -1,0 +1,47 @@
+name: Release
+
+# Builds the app archive when a version tag (v0.1.0, v1.2.3...) is pushed
+# and attaches it to a GitHub release. The archive still has to be signed
+# and uploaded to https://apps.nextcloud.com by hand.
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check that the tag matches the version of the app
+        run: |
+          APP_VERSION=$(grep -oP '(?<=<version>)[^<]+' appinfo/info.xml)
+          if [ "v$APP_VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match the version in appinfo/info.xml (v$APP_VERSION)"
+            exit 1
+          fi
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Build the app archive
+        run: |
+          # Everything listed in .nextcloudignore is left out; the files go in an elabftw_picker/ folder
+          tar --exclude-from=.nextcloudignore --transform 's,^\.,elabftw_picker,' -czf elabftw_picker.tar.gz .
+          tar -tzf elabftw_picker.tar.gz
+          sha256sum elabftw_picker.tar.gz
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: elabftw_picker.tar.gz
+          generate_release_notes: true

@@ -1,0 +1,52 @@
+{
+	"name": "elabftw_picker",
+	"version": "0.1.0",
+	"description": "eLabFTW in the Nextcloud Smart Picker, with rich link previews",
+	"author": "R&D Chimie",
+	"license": "AGPL-3.0-or-later",
+	"homepage": "https://github.com/taiebot/elabftw_picker",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/taiebot/elabftw_picker.git"
+	},
+	"bugs": {
+		"url": "https://github.com/taiebot/elabftw_picker/issues"
+	},
+	"private": true,
+	"scripts": {
+		"build": "webpack --node-env production --progress",
+		"dev": "webpack --node-env development --progress",
+		"watch": "webpack --node-env development --progress --watch"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-free": "^6.7.2",
+		"@nextcloud/auth": "^2.4.0",
+		"@nextcloud/axios": "^2.5.0",
+		"@nextcloud/dialogs": "^7.4.0",
+		"@nextcloud/initial-state": "^2.2.0",
+		"@nextcloud/l10n": "^3.1.0",
+		"@nextcloud/router": "^3.0.1",
+		"@nextcloud/vue": "^9.0.0",
+		"vue": "^3.5.13"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.26.0",
+		"@nextcloud/webpack-vue-config": "^6.2.0",
+		"babel-loader": "^10.1.1",
+		"css-loader": "^7.1.5",
+		"node-polyfill-webpack-plugin": "^4.0.0",
+		"sass": "^1.106.1",
+		"sass-loader": "^16.0.8",
+		"style-loader": "^4.0.0",
+		"terser-webpack-plugin": "^5.6.1",
+		"ts-loader": "^9.6.2",
+		"vue-loader": "^17.4.2",
+		"webpack": "^5.112.0",
+		"webpack-cli": "^6.0.1",
+		"webpack-dev-server": "^5.2.7"
+	},
+	"engines": {
+		"node": "^20.0.0 || ^22.0.0",
+		"npm": "^10.0.0"
+	}
+}

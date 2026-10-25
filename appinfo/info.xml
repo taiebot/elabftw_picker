@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>elabftw_picker</id>
+	<name>eLabFTW Smart Picker</name>
+	<summary>Search eLabFTW in the Smart Picker and get rich previews of eLabFTW links</summary>
+	<description><![CDATA[Adds eLabFTW to the Nextcloud Smart Picker so that experiments and resources can be searched and inserted as links (Text, Talk, Collectives, Notes, Mail…).
+
+eLabFTW links are displayed as rich previews showing the title, the category, the author, the last modification date, the status, the tags and the state (signed, locked, timestamped, archived) of the entry.
+
+Archived entries are found too: they are listed after the normal ones, or right away when nothing else matches.
+
+Each user provides their own eLabFTW API key, so search results and previews always respect eLabFTW permissions. The administrator only configures the URL of the eLabFTW server.
+
+This app is not affiliated with the eLabFTW project.]]></description>
+	<version>0.1.0</version>
+	<licence>agpl</licence>
+	<author>taiebot</author>
+	<namespace>eLabFTWPicker</namespace>
+	<category>integration</category>
+	<category>search</category>
+	<website>https://github.com/taiebot/elabftw_picker</website>
+	<bugs>https://github.com/taiebot/elabftw_picker/issues</bugs>
+	<repository type="git">https://github.com/taiebot/elabftw_picker.git</repository>
+	<!-- Add screenshots once they are in the repository, for example:
+	<screenshot>https://raw.githubusercontent.com/taiebot/elabftw_picker/main/docs/screenshots/preview.png</screenshot>
+	-->
+	<dependencies>
+		<php min-version="8.1"/>
+		<nextcloud min-version="33" max-version="35"/>
+	</dependencies>
+	<settings>
+		<admin>OCA\ElabFtwPicker\Settings\AdminSettings</admin>
+		<personal>OCA\ElabFtwPicker\Settings\PersonalSettings</personal>
+	</settings>
+</info>

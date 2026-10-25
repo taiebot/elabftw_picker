@@ -1,0 +1,15 @@
+.git
+.github
+.gitignore
+.nextcloudignore
+.DS_Store
+node_modules
+src
+tools
+build
+package.json
+package-lock.json
+webpack.config.js
+README.md
+*.log
+*.tar.gz

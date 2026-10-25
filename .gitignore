@@ -1,0 +1,15 @@
+node_modules/
+js/
+vendor/
+build/
+*.log
+*.tar.gz
+.DS_Store
+.idea/
+.vscode/
+
+# Signing material: never commit it
+*.key
+*.csr
+*.crt
+*.pem
