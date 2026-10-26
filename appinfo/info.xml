@@ -13,7 +13,7 @@ Archived entries are found too: they are listed after the normal ones, or right 
 Each user provides their own eLabFTW API key, so search results and previews always respect eLabFTW permissions. The administrator only configures the URL of the eLabFTW server.
 
 This app is not affiliated with the eLabFTW project.]]></description>
-	<version>0.1.1</version>
+	<version>0.1.2</version>
 	<licence>agpl</licence>
 	<author>taiebot</author>
 	<namespace>ElabFtwPicker</namespace>
