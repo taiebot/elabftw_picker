@@ -16,7 +16,7 @@ This app is not affiliated with the eLabFTW project.]]></description>
 	<version>0.1.0</version>
 	<licence>agpl</licence>
 	<author>taiebot</author>
-	<namespace>eLabFTWPicker</namespace>
+	<namespace>ElabFtwPicker</namespace>
 	<category>integration</category>
 	<category>search</category>
 	<website>https://github.com/taiebot/elabftw_picker</website>

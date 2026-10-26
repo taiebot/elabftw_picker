@@ -1,4 +1,4 @@
-# eLabFTW Smart Picker (`elabftw_picker`)
+# eLabFTW Smart Picker (`eLabFTW_picker`)
 
 Application Nextcloud qui :
 
@@ -11,10 +11,10 @@ Application Nextcloud qui :
 
 | Élément | Implémentation |
 |---|---|
-| Recherche dans le Smart Picker | un *search provider* unique (`elabftw`) qui renvoie expériences et ressources dans la même liste, déclaré par un *reference provider* découvrable (`ISearchableReferenceProvider`) |
+| Recherche dans le Smart Picker | un *search provider* unique (`eLabFTW`) qui renvoie expériences et ressources dans la même liste, déclaré par un *reference provider* découvrable (`ISearchableReferenceProvider`) |
 | Entrées archivées | cherchées après les entrées normales (voir [Recherche dans les archives](#recherche-dans-les-archives)) |
-| Aperçu du lien | `ElabFtwReferenceProvider::resolveReference()` appelle `GET /api/v2/{experiments\|items}/{id}` (avec `state=2` pour une entrée archivée) et renvoie un *rich object* `elabftw_entity` |
-| Rendu | widget Vue (`src/components/ElabFtwReferenceWidget.vue`) enregistré avec `registerWidget` |
+| Aperçu du lien | `eLabFTWReferenceProvider::resolveReference()` appelle `GET /api/v2/{experiments\|items}/{id}` (avec `state=2` pour une entrée archivée) et renvoie un *rich object* `eLabFTW_entity` |
+| Rendu | widget Vue (`src/components/eLabFTWReferenceWidget.vue`) enregistré avec `registerWidget` |
 | Liens reconnus | `<URL serveur>/experiments.php?mode=view&id=N` et `<URL serveur>/database.php?mode=view&id=N` |
 | Authentification | clé API **propre à chaque utilisateur** (stockée chiffrée) : recherche et aperçus respectent les droits eLabFTW de l'utilisateur |
 | Cache des aperçus | par lien **et par utilisateur** (les droits diffèrent d'un utilisateur à l'autre) |
@@ -43,7 +43,7 @@ L'API d'eLabFTW ne renvoie les entrées archivées que si on les demande explici
 ```bash
 npm ci
 npm run build        # génère js/
-# copier le dossier dans nextcloud/apps/elabftw_picker (sans node_modules)
+# copier le dossier dans nextcloud/apps/eLabFTW_picker (sans node_modules)
 occ app:enable elabftw_picker
 ```
 
@@ -72,20 +72,6 @@ Les icônes sont celles de Font Awesome (copiées dans `img/`). Les vignettes de
 ```bash
 python3 tools/make_search_icons.py img
 ```
-
-### Publier une version
-
-1. Mettre à jour la version dans `appinfo/info.xml` **et** `package.json`, et ajouter une entrée dans `CHANGELOG.md`.
-2. Créer un tag `vX.Y.Z` et le pousser : le workflow GitHub (`.github/workflows/release.yml`) construit l'archive `elabftw_picker.tar.gz` et l'attache à la release.
-3. Signer l'archive et la déposer sur <https://apps.nextcloud.com> en suivant la documentation des développeurs Nextcloud.
-
-## Limites connues / à vérifier
-
-- Compatibilité déclarée dans `appinfo/info.xml` : Nextcloud 30 à 35. Testé sur : *à compléter*.
-- Les champs lus dans l'API v2 sont `title`, `fullname`, `modified_at` (ou `lastchange`), `status_title`, `status_color`, `category_title`, `category_color`, `tags`, `locked`, `timestamped`, `signature_count` / `last_signed_at`, `state` et `body_html` (ou `body`). Si la liste de recherche d'eLabFTW n'en renvoie pas certains, la ligne de résultat les omet ; l'aperçu, lui, utilise la lecture complète d'une entrée.
-- Les aperçus de liens sont mis en cache par Nextcloud : une modification dans eLabFTW peut n'apparaître qu'après expiration du cache.
-- Le périmètre de recherche (`scope`) suit la préférence de l'utilisateur dans eLabFTW.
-- Frontend en Vue 3 / `@nextcloud/vue` 9 ; le widget d'aperçu passe par le registre partagé de `NcRichText` : à confirmer sur votre version.
 
 ## Crédits et licence
 
