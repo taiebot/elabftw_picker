@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.2 - 2026-10-26
+Well try to make it work on 33
+
 ## 0.1.0 - 2026-10-25
 
 First release.

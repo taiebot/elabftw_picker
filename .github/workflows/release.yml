@@ -36,8 +36,11 @@ jobs:
 
       - name: Build the app archive
         run: |
-          # Everything listed in .nextcloudignore is left out; the files go in an elabftw_picker/ folder
-          tar --exclude-from=.nextcloudignore --transform 's,^\.,elabftw_picker,' -czf elabftw_picker.tar.gz .
+          # Everything listed in .nextcloudignore is left out; the files go in an elabftw_picker/ folder.
+          # The archive is written outside the working directory, otherwise tar fails
+          # with "file changed as we read it" because creating the archive modifies ".".
+          tar --exclude-from=.nextcloudignore --transform 's,^\.,elabftw_picker,' -czf "$RUNNER_TEMP/elabftw_picker.tar.gz" .
+          mv "$RUNNER_TEMP/elabftw_picker.tar.gz" .
           tar -tzf elabftw_picker.tar.gz
           sha256sum elabftw_picker.tar.gz
 
